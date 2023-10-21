@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='{{ .Site.LanguageCode | default "en-us" }}'>
+
+<head>
+    <meta charset='utf-8' />
+    <meta viewport='width=device-width' />
+    <meta viewport='initial-scale=1' />
+    <meta viewport='user-scalable=yes' />
+    <title>{{ block "titlebar" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <link href='/favicon.ico' rel='icon' />
+    <link rel='stylesheet' href='/css/theme.css'>
+    {{ range .Site.Params.css }}
+    <link rel='stylesheet' href='{{ . }}'>
+    {{ end }}
+    {{ with .Params.css }}
+    {{ range .section }}
+    <link rel='stylesheet' href='{{ . }}'>
+    {{ end }}
+    {{ range .page }}
+    <link rel='stylesheet' href='{{ . }}'>
+    {{ end }}
+    {{ end }}
+
+</head>
+
+<body>
+    <header class='site-info banner'>
+        <p class='banner__title' href='/'>{{ .Site.Title }}</p>
+        <nav class='nav'>
+            <ul class='nav__list list--flex'>
+                {{ range .Site.Menus.main }}
+                <li class='nav__item'>
+                    <a class='nav__link' href='{{ .URL }}'>{{ .Title }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </nav>
+    </header>
+    {{ block "main" . }}{{ end }}
+    <footer class='site-info footer'>
+        <div class='footer__copyright' role='copyright'>
+            {{ block "copyright" . }}
+            {{ .Site.Copyright }}
+            {{ end }}
+        </div>
+    </footer>
+</body>
+
+</html>
