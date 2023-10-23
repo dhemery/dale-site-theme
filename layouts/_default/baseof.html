@@ -9,10 +9,10 @@
     <title>{{ block "titlebar" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <link href='/favicon.ico' rel='icon' />
     <link rel='stylesheet' href='/css/theme.css'>
-    {{ range .Site.Params.css }}
+    {{ range .Site.Params.stylesheets }}
     <link rel='stylesheet' href='{{ . }}'>
     {{ end }}
-    {{ with .Params.css }}
+    {{ with .Params.stylesheets }}
     {{ range .section }}
     <link rel='stylesheet' href='{{ . }}'>
     {{ end }}
