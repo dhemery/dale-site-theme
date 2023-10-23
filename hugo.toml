@@ -1,0 +1,13 @@
+# Note that mounting any dir disables Hugo's default mounts.
+# So if we mount any, we have to mount all.
+[[module.mounts]]
+source = 'partials'
+target = 'layouts/partials'
+
+[[module.mounts]]
+source = 'layouts'
+target = 'layouts'
+
+[[module.mounts]]
+source = 'static'
+target = 'static'
