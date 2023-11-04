@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang='{{ .Site.LanguageCode | default "en-us" }}'>
+{{ block "set-scratch" . }}
+{{ if not (.Scratch.Get "title") }}
+{{ .Scratch.Set "title" .Title }}
+{{ end }}
+{{ end }}
 
 <head>
     <meta charset='utf-8' />
     <meta viewport='width=device-width' />
     <meta viewport='initial-scale=1' />
     <meta viewport='user-scalable=yes' />
-    <title>
-        {{ block "titlebar" . }}
-        {{ block "title" . }}{{ .Title }}{{ end }}
-        |
-        {{ .Site.Title }}
-        {{ end }}
-    </title>
+    <title>{{ .Scratch.Get "title" }} | {{ site.Title }}</title>
     <link href='/favicon.ico' rel='icon' />
     <link rel='stylesheet' href='/css/theme.css'>
     {{ range .Site.Params.stylesheets }}
@@ -31,7 +30,7 @@
 
 <body>
     <header class='site-info banner'>
-        <p class='banner__title' href='/'>{{ .Site.Title }}</p>
+        <p class='banner__title' href='/'>{{ site.Title }}</p>
         <nav class='nav'>
             <ul class='nav__list list--flex'>
                 {{ range .Site.Menus.main }}
@@ -42,9 +41,16 @@
             </ul>
         </nav>
     </header>
-    {{ block "main" . }}{{ end }}
-    <div>Type {{ .Type }}</div>
-    <div>Layout {{ .Layout }}</div>
+    {{ block "main" . }}
+    <main class='baseof content'>
+        {{ block "heading" . }}
+        <h1 class='baseof page-header page-header__title'>{{ .Scratch.Get "title" }}</h1>
+        {{ end }}
+        {{ block "content" . }}
+        <div class='baseof flow'>{{ .Content }}</div>
+        {{ end }}
+    </main>
+    {{ end }}
     <footer class='site-info footer'>
         <div class='footer__copyright' role='copyright'>
             {{ block "copyright" . }}
