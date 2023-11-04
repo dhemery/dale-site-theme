@@ -6,7 +6,13 @@
     <meta viewport='width=device-width' />
     <meta viewport='initial-scale=1' />
     <meta viewport='user-scalable=yes' />
-    <title>{{ block "titlebar" . }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+    <title>
+        {{ block "titlebar" . }}
+        {{ block "title" . }}{{ .Title }}{{ end }}
+        |
+        {{ .Site.Title }}
+        {{ end }}
+    </title>
     <link href='/favicon.ico' rel='icon' />
     <link rel='stylesheet' href='/css/theme.css'>
     {{ range .Site.Params.stylesheets }}
@@ -37,6 +43,8 @@
         </nav>
     </header>
     {{ block "main" . }}{{ end }}
+    <div>Type {{ .Type }}</div>
+    <div>Layout {{ .Layout }}</div>
     <footer class='site-info footer'>
         <div class='footer__copyright' role='copyright'>
             {{ block "copyright" . }}
