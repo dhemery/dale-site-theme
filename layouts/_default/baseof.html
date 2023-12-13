@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang='{{ .Site.LanguageCode | default "en-us" }}'>
-{{ block "set-scratch" . }}
-{{ if not (.Scratch.Get "title") }}
-{{ .Scratch.Set "title" .Title }}
-{{ end }}
-{{ end }}
 
 <head>
     <meta charset='utf-8' />
     <meta viewport='width=device-width' />
     <meta viewport='initial-scale=1' />
     <meta viewport='user-scalable=yes' />
-    <title>{{ .Scratch.Get "title" }} | {{ site.Title }}</title>
+    <title>{{ .Title }} | {{ site.Title }}</title>
     <link href='/favicon.ico' rel='icon' />
     <link rel='stylesheet' href='/css/theme.css'>
     {{ range .Site.Params.stylesheets }}
@@ -42,12 +37,12 @@
         </nav>
     </header>
     {{ block "main" . }}
-    <main class='baseof content'>
+    <main class='content'>
         {{ block "heading" . }}
-        <h1 class='baseof page-header page-header__title'>{{ .Scratch.Get "title" }}</h1>
+        {{ partial "render/page/header" . }}
         {{ end }}
         {{ block "content" . }}
-        <div class='baseof flow'>{{ .Content }}</div>
+        {{ partial "render/page/content" . }}
         {{ end }}
     </main>
     {{ end }}
