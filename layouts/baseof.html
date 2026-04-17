@@ -7,20 +7,17 @@
     <meta viewport='width=device-width' />
     <meta viewport='initial-scale=1' />
     <meta viewport='user-scalable=yes' />
-    <title>{{ .Title }} | {{ site.Title }}</title>
     <link href='/favicon.ico' rel='icon' />
-    {{ range .Site.Params.stylesheets }}
-    <link rel='stylesheet' href='{{ . }}'>
-    {{ end }}
-    {{ with .Params.stylesheets }}
-    {{ range .section }}
-    <link rel='stylesheet' href='{{ . }}'>
-    {{ end }}
-    {{ range .page }}
-    <link rel='stylesheet' href='{{ . }}'>
-    {{ end }}
+
+    {{ block "head-title" . }}
+        <title>{{ .Title }} | {{ site.Title }}</title>
     {{ end }}
 
+    {{ block "head-style" . }}
+        {{ range .Site.Params.stylesheets }}
+            <link rel='stylesheet' href='{{ . }}'>
+        {{ end }}
+    {{ end }}
 </head>
 
 <body>
