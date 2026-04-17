@@ -21,35 +21,49 @@
 </head>
 
 <body>
-    <header>
-        <p href='/'>{{ site.Title }}</p>
-        <nav>
-            <ul>
-                {{ range .Site.Menus.main }}
-                <li>
-                    <a href='{{ .URL }}'>{{ .Title }}</a>
-                </li>
-                {{ end }}
-            </ul>
-        </nav>
-    </header>
-    {{ block "main" . }}
-    <main>
-        {{ block "heading" . }}
-        {{ partial "render/page/header" . }}
-        {{ end }}
-        {{ block "content" . }}
-        {{ partial "render/page/content" . }}
-        {{ end }}
-    </main>
-    {{ end }}
-    <footer>
-        <div role='copyright'>
-            {{ block "copyright" . }}
-            {{ .Site.Copyright }}
+    {{ block "header" . }}
+        <header>
+            {{ block "header-title" . }}
+                <p href='/'>{{ site.Title }}</p>
             {{ end }}
-        </div>
-    </footer>
+
+            {{ block "header-nav" . }}
+                <nav>
+                    <ul>
+                        {{ range .Site.Menus.main }}
+                            {{ if .URL }}
+                                <li>
+                                    <a href='{{ .URL }}'>{{ .Title }}</a>
+                                </li>
+                            {{ end }}
+                        {{ end }}
+                    </ul>
+                </nav>
+            {{ end }}
+        </header>
+    {{ end }}
+
+    {{ block "main" . }}
+        <main>
+            {{ block "title" . }}
+                <h1>{{ .Title }}</h1>
+            {{ end }}
+
+            {{ block "content" . }}
+                <div>{{ .Content }}</div>
+            {{ end }}
+        </main>
+    {{ end }}
+
+    {{ block "footer" . }}
+        <footer>
+            {{ block "copyright" . }}
+                <div role='copyright'>
+                    {{ .Site.Copyright }}
+                </div>
+            {{ end }}
+        </footer>
+    {{ end }}
 </body>
 
 </html>
