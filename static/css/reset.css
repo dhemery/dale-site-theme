@@ -1,0 +1,25 @@
+:is(*, *::before, *::after) {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:is(img, picture, video, canvas, svg) {
+    display: block;
+    max-inline-size: 100%;
+}
+
+:is(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+:is(h1, h2, h3, h4, h5, h6) {
+    text-wrap: balance;
+}

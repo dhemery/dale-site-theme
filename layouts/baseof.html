@@ -1,3 +1,4 @@
+<!-- vim: set filetype=gotmpl: -->
 <!DOCTYPE html>
 <html lang='{{ .Site.LanguageCode | default "en-us" }}'>
 
@@ -8,7 +9,6 @@
     <meta viewport='user-scalable=yes' />
     <title>{{ .Title }} | {{ site.Title }}</title>
     <link href='/favicon.ico' rel='icon' />
-    <link rel='stylesheet' href='/css/theme.css'>
     {{ range .Site.Params.stylesheets }}
     <link rel='stylesheet' href='{{ . }}'>
     {{ end }}
@@ -22,21 +22,22 @@
     {{ end }}
 
 </head>
+
 <body>
-    <header class='site-info banner'>
-        <p class='banner__title' href='/'>{{ site.Title }}</p>
-        <nav class='nav'>
-            <ul class='nav__list list--flex'>
+    <header>
+        <p href='/'>{{ site.Title }}</p>
+        <nav>
+            <ul>
                 {{ range .Site.Menus.main }}
-                <li class='nav__item'>
-                    <a class='nav__link' href='{{ .URL }}'>{{ .Title }}</a>
+                <li>
+                    <a href='{{ .URL }}'>{{ .Title }}</a>
                 </li>
                 {{ end }}
             </ul>
         </nav>
     </header>
     {{ block "main" . }}
-    <main class='content'>
+    <main>
         {{ block "heading" . }}
         {{ partial "render/page/header" . }}
         {{ end }}
@@ -45,8 +46,8 @@
         {{ end }}
     </main>
     {{ end }}
-    <footer class='site-info footer'>
-        <div class='footer__copyright' role='copyright'>
+    <footer>
+        <div role='copyright'>
             {{ block "copyright" . }}
             {{ .Site.Copyright }}
             {{ end }}
