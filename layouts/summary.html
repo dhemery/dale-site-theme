@@ -1,6 +1,9 @@
-<div class='page-summary'>
-  <h2 class='page-summary__title'>
-    <a href='{{ .Permalink }}'>{{ .Title }}</a>
-  </h2>
-  <div class='flow'>{{ .Summary }}</div>
+<!-- vim: set filetype=gotmpl: -->
+<div>
+    <h2>
+        <a href='{{ .Permalink }}'>{{ .Title }}</a>
+    </h2>
+    {{ with .Summary }}
+        <div>{{ .end }}</div>
+    {{ end }}
 </div>
