@@ -1,7 +1,4 @@
 {{/* vim: set filetype=gotmpl: */}}
-{{ define "main" }}
-    <main class='content'>
-        {{ partial "render/page/header" . }}
-        {{ partial "render/page/content" . }}
-    </main>
+{{ define "content" }}
+    {{ .Content }}
 {{ end }}
