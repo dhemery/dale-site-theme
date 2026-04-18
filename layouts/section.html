@@ -1,6 +1,6 @@
-{{ define "main" }}
-<main class='content'>
-  {{ partial "render/page/header" . }}
-  {{ partial "render/summary/list" .Pages }}
-</main>
+<!-- vim: set filetype=gotmpl: -->
+{{ define "content" }}
+    {{ range .Pages }}
+        {{ .Render "summary" }}
+    {{ end }}
 {{ end }}
