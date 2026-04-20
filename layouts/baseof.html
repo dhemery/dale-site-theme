@@ -24,7 +24,7 @@
     {{ block "header" . }}
         <header>
             {{ block "header-title" . }}
-                <a href='/'>{{ site.Title }}</a>
+                <a class='title' href='{{ site.BaseURL }}'>{{ site.Title }}</a>
             {{ end }}
 
             {{ block "header-nav" . }}
